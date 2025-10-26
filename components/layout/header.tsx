@@ -50,7 +50,7 @@ export function Header() {
     <>
       {/* Main navigation */}
       <motion.header
-        className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 w-full border-b transition-all duration-300 ${
           isScrolled
             ? "bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60"
             : "bg-background/80"
@@ -61,12 +61,8 @@ export function Header() {
       >
         <div className="container mx-auto px-4 h-24 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/">
-            <motion.div
-              className="flex items-center space-x-2 cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
+          <Link href="/" className="shrink-0">
+            <div className="flex items-center space-x-2">
               <Image
                 src="/images/sktm-logo.jpeg"
                 alt="SKATMA Holdings Logo"
@@ -75,7 +71,7 @@ export function Header() {
                 className="h-20 w-auto object-contain rounded-lg"
                 priority
               />
-            </motion.div>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

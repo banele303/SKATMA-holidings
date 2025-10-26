@@ -102,21 +102,21 @@ export function AboutSection() {
             
             {/* Floating stats card */}
             <motion.div
-              className="absolute -bottom-8 -right-8 bg-background border rounded-lg shadow-xl p-6"
+              className="absolute -bottom-8 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:-right-8 bg-background border rounded-lg shadow-xl p-4 md:p-6 w-[90%] max-w-[280px] md:w-auto"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                  <CheckCircle2 className="w-6 h-6 text-red-600" />
+              <div className="flex items-center gap-3 md:gap-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-red-100 rounded-full flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-red-600" />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold">
+                  <div className="text-xl md:text-2xl font-bold">
                     <AnimatedCounter end={100} />+
                   </div>
-                  <div className="text-sm text-muted-foreground">Projects Completed</div>
+                  <div className="text-xs md:text-sm text-muted-foreground">Projects Completed</div>
                 </div>
               </div>
             </motion.div>
