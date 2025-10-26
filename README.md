@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SKATMA Holdings Website
 
-## Getting Started
+A modern, stunning website for SKATMA Holdings built with Next.js 16, showcasing excellence across multiple industries including farming, hospitality, construction, and automotive services.
 
-First, run the development server:
+## 🚀 Features
 
+- ✨ **Modern Design**: Clean, professional interface with smooth animations
+- 🎨 **Dark/Light Mode**: Full theme support for user preference
+- 📱 **Fully Responsive**: Mobile-first design that works on all devices
+- ⚡ **Optimized Performance**: Fast loading times and SEO-optimized
+- 🎭 **Framer Motion Animations**: Engaging scroll animations and transitions
+- 🎯 **shadcn/ui Components**: Beautiful, accessible UI components
+- 🌊 **Animated Background**: Dynamic geometric shapes and particles
+- 📊 **Interactive Sections**: Animated counters, moving cards, and more
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS v4
+- **UI Components**: shadcn/ui
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Theme**: next-themes
+- **TypeScript**: Full type safety
+
+## 📦 Installation & Getting Started
+
+1. **Install dependencies**:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Run the development server**:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Open your browser** and navigate to [http://localhost:3000](http://localhost:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The page auto-updates as you edit the files.
 
-## Learn More
+## 🌐 Building for Production
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+stockholdings/
+├── app/
+│   ├── layout.tsx          # Root layout with SEO metadata
+│   ├── page.tsx            # Home page
+│   └── globals.css         # Global styles
+├── components/
+│   ├── layout/
+│   │   ├── header.tsx      # Navigation header
+│   │   ├── footer.tsx      # Footer with contact info
+│   │   ├── animated-background.tsx
+│   │   ├── theme-provider.tsx
+│   │   └── theme-toggle.tsx
+│   ├── sections/
+│   │   ├── hero-section.tsx
+│   │   ├── about-section.tsx
+│   │   ├── services-section.tsx
+│   │   ├── subsidiaries-section.tsx
+│   │   └── news-section.tsx
+│   └── ui/                 # shadcn/ui components
+├── lib/
+│   ├── data/
+│   │   └── company-data.ts # All company information
+│   └── utils.ts
+└── public/
+    └── images/             # Image assets
+```
+
+## 🎨 Customization
+
+### Colors
+The site uses a red theme (#dc2626) as the primary color. Update in `lib/data/company-data.ts`.
+
+### Content
+All content is centralized in `lib/data/company-data.ts`:
+- Company information
+- Services
+- Subsidiaries  
+- Blog posts
+- Statistics
+
+### Images
+Place your images in `public/images/` and update the paths in the data file.
+
+## 📸 Required Images
+
+Add the following images to `public/images/`:
+- `hero-bg.jpg` - Hero section background
+- Subsidiary images: `cabal-villa.jpg`, `msta-holdings.jpg`, `lumveleni.jpg`, `agri-nema.jpg`
+- Service images: `farming.jpg`, `carwash.jpg`, `restaurant.jpg`, `bricks.jpg`
+- Blog images: `blog-agriculture.jpg`, `blog-hospitality.jpg`, `blog-construction.jpg`
+
+## 📞 Contact
+
+- **Email**: enquiries@skatmaholdings.co.za
+- **Phone**: 067 625 4207
+- **Address**: Manini Block L, Thohoyandou – L EXT 0968
+
+## 📄 License
+
+Copyright © 2025 SKATMA Holdings | Reg No: 2019/537731/07
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+---
+
+Built with ❤️ using Next.js
