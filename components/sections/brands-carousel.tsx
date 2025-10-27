@@ -4,33 +4,16 @@ import { motion, useAnimationControls } from "framer-motion"
 import { useEffect } from "react"
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
+import { subsidiaries } from "@/lib/data/company-data"
 
-const brands = [
-  {
-    id: 1,
-    name: "Cabal Villa",
-    description: "Providing exquisite Dining and Bar tendering experience.",
-    image: "/images/logo.jpeg"
-  },
-  {
-    id: 2,
-    name: "MSTA holdings",
-    description: "We specialize in producing and supplying durable, high-quality bricks for all types of construction.",
-    image: "/images/stma-bricks.jpeg"
-  },
-  {
-    id: 3,
-    name: "Lumveleni",
-    description: "A multi-facade Bar, Restuarant and Car washing company.",
-    image: "/images/anotherlogo.jpeg"
-  },
-  {
-    id: 4,
-    name: "Agri-nema",
-    description: "The farming engine with expertise in crop and animal farming.",
-    image: "/images/fresh-logo.jpeg"
-  }
-]
+// Build the brands list from subsidiaries so we use real names, images, and external links
+const brands = subsidiaries.map((s) => ({
+  id: s.id,
+  name: s.name,
+  description: s.description,
+  image: s.image,
+  website: s.website,
+}))
 
 export function BrandsCarousel() {
   const controls = useAnimationControls()
@@ -86,16 +69,12 @@ export function BrandsCarousel() {
           animate={controls}
           style={{ width: "fit-content" }}
         >
-          {duplicatedBrands.map((brand, index) => (
-            <motion.div
-              key={`${brand.id}-${index}`}
-              whileHover={{ scale: 1.05, y: -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Card className="w-[320px] sm:w-[320px] h-[200px] sm:h-auto p-2 sm:p-2 bg-background hover:shadow-xl transition-all cursor-pointer border-2 hover:border-[#3e3a70]/50">
-                <div className="flex sm:flex-col items-center sm:items-center text-center space-x-4 sm:space-x-0 sm:space-y-4 h-full">
+          {duplicatedBrands.map((brand, index) => {
+            const CardInner = (
+              <Card className="w-[320px] md:w-[360px] h-[200px] md:h-[200px] p-2 bg-background hover:shadow-xl transition-all cursor-pointer border-2 hover:border-[#3e3a70]/50">
+                <div className="flex flex-row items-center text-left space-x-4 h-full">
                   {/* Logo Image */}
-                  <div className="relative w-32 h-32 sm:w-40 sm:h-40 shrink-0 overflow-hidden ">
+                  <div className="relative w-32 h-32 shrink-0 overflow-hidden">
                     <Image
                       src={brand.image}
                       alt={brand.name}
@@ -104,24 +83,47 @@ export function BrandsCarousel() {
                     />
                   </div>
 
-                  <div className="flex flex-col justify-center text-left sm:text-center flex-1">
+                  <div className="flex flex-col justify-center flex-1">
                     {/* Brand Name */}
-                    <h3 className="text-lg sm:text-xl font-bold text-[#1f2244] dark:text-gray-100 mb-2">
+                    <h3 className="text-lg md:text-xl font-bold text-[#1f2244] dark:text-gray-100 mb-2 line-clamp-1">
                       {brand.name}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-xs sm:text-sm text-[#1f2244]/75 dark:text-gray-400 line-clamp-2 sm:line-clamp-3">
+                    <p className="text-xs md:text-sm text-[#1f2244]/75 dark:text-gray-400 line-clamp-2">
                       {brand.description}
                     </p>
                   </div>
-
-                  {/* Decorative Line - Hidden on mobile */}
-                  <div className="hidden sm:block w-16 h-1 bg-linear-to-r from-[#1f2244] to-[#3e3a70] rounded-full" />
                 </div>
               </Card>
-            </motion.div>
-          ))}
+            )
+
+            const content = (
+              <motion.div
+                key={`${brand.id}-${index}`}
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                {CardInner}
+              </motion.div>
+            )
+
+            // Wrap with external link if available
+            return brand.website ? (
+              <a
+                key={`${brand.id}-${index}`}
+                href={brand.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit ${brand.name} website`}
+                className="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3e3a70]"
+              >
+                {content}
+              </a>
+            ) : (
+              content
+            )
+          })}
         </motion.div>
       </div>
 

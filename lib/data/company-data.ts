@@ -24,7 +24,7 @@ export const subsidiaries = [
     description: "Providing exquisite Dining and Bar tendering experience.",
     details: "Cabal Villa stands as a premier dining destination, offering an exceptional culinary journey combined with professional bar services. Our establishment prides itself on creating memorable experiences through expertly crafted cocktails, fine wines, and gourmet cuisine. With a sophisticated atmosphere and impeccable service, we cater to both intimate gatherings and corporate events.",
     services: ["Fine Dining", "Bar Services", "Event Hosting", "Corporate Catering"],
-    image: "/images/cabal-villa.jpg",
+    image: "/images/logo.jpeg",
     website: "https://cabal-villa.vercel.app/"
   },
   {
@@ -33,7 +33,7 @@ export const subsidiaries = [
     description: "We specialize in producing and supplying durable, high-quality bricks for all types of construction.",
     details: "MSTA Holdings is a leading manufacturer and supplier of premium construction materials, specializing in high-grade bricks and building supplies. Our state-of-the-art production facilities ensure consistent quality and durability, meeting the demanding requirements of residential, commercial, and industrial construction projects. We are committed to sustainable manufacturing practices while maintaining competitive pricing.",
     services: ["Brick Manufacturing", "Construction Materials", "Quality Assurance", "Logistics & Delivery"],
-    image: "/images/msta-holdings.jpg",
+    image: "/images/stma-bricks.jpeg",
     website: "https://www.stmatechnicaldevelopment.co.za/"
   },
   {
@@ -42,7 +42,7 @@ export const subsidiaries = [
     description: "A multi-facade Bar, Restaurant and Car washing company.",
     details: "Lumveleni represents the perfect fusion of hospitality and automotive services. Our unique business model combines a vibrant bar and restaurant experience with professional car washing services. Customers can enjoy freshly prepared meals and refreshing beverages while their vehicles receive top-quality cleaning and detailing services. This innovative approach maximizes convenience and customer satisfaction.",
     services: ["Restaurant Services", "Bar & Beverages", "Car Wash & Detailing", "Customer Lounge"],
-    image: "/images/lumveleni.jpg",
+    image: "/images/anotherlogo.jpeg",
     website: "https://cabal-villa.vercel.app/lumveleni"
   },
   {
@@ -51,7 +51,7 @@ export const subsidiaries = [
     description: "The farming engine with expertise in crop and animal farming.",
     details: "Agri-nema serves as our agricultural powerhouse, implementing cutting-edge farming techniques and sustainable practices. Our operations span both crop cultivation and livestock management, ensuring food security and supporting local communities. We utilize modern agricultural technology, precision farming methods, and sustainable resource management to maximize productivity while preserving environmental integrity.",
     services: ["Crop Production", "Livestock Management", "Sustainable Agriculture", "Food Security"],
-    image: "/images/agri-nema.jpg",
+    image: "/images/fresh-logo.jpeg",
     website: "https://www.agrinema-farm.co.za/"
   }
 ]

@@ -27,7 +27,7 @@ export function SubsidiariesSection() {
   return (
     <section
       id="subsidiaries"
-      className="py-24 overflow-hidden bg-gradient-to-br from-[#060918] via-[#111832] to-[#1c214a] text-white"
+      className="py-24 overflow-hidden bg-linear-to-br from-[#060918] via-[#111832] to-[#1c214a] text-white"
     >
       <div className="container mx-auto px-4 mb-12">
         <motion.div
