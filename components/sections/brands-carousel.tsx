@@ -84,14 +84,20 @@ export function BrandsCarousel() {
               <Card className="w-[300px] sm:w-[320px] md:w-[360px] h-[180px] sm:h-[200px] p-2 bg-background hover:shadow-xl transition-all cursor-pointer border-2 hover:border-[#3e3a70]/50">
                 <div className="flex flex-row items-center text-left gap-3 sm:gap-4 h-full">
                   {/* Logo Image */}
-                  <div className="relative w-32 h-32 shrink-0 overflow-hidden">
+                  <motion.div
+                    className="relative w-28 h-28 sm:w-32 sm:h-32 shrink-0 overflow-hidden"
+                    initial={isMobile ? { y: 12, opacity: 0 } : undefined}
+                    whileInView={isMobile ? { y: 0, opacity: 1 } : undefined}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 24 }}
+                  >
                     <Image
                       src={brand.image}
                       alt={brand.name}
                       fill
                       className="object-contain"
                     />
-                  </div>
+                  </motion.div>
 
                   <div className="flex flex-col justify-center flex-1">
                     {/* Brand Name */}
@@ -111,8 +117,12 @@ export function BrandsCarousel() {
             const content = (
               <motion.div
                 key={`${brand.id}-${index}`}
+                initial={isMobile ? { y: 24, opacity: 0 } : undefined}
+                whileInView={isMobile ? { y: 0, opacity: 1 } : undefined}
+                viewport={{ once: true, amount: 0.3 }}
                 whileHover={!isMobile ? { scale: 1.05, y: -5 } : undefined}
-                transition={{ duration: 0.25 }}
+                whileTap={{ scale: 0.98, y: 1 }}
+                transition={{ duration: 0.25, delay: isMobile ? index * 0.05 : 0 }}
                 className={`${isMobile ? "shrink-0 snap-start" : ""}`}
               >
                 {CardInner}

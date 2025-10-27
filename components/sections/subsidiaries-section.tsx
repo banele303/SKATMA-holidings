@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { subsidiaries } from "@/lib/data/company-data"
 import { ExternalLink } from "lucide-react"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 
 export function SubsidiariesSection() {
   const controls = useAnimation()
@@ -116,7 +116,7 @@ export function SubsidiariesSection() {
 
               if (subsidiary.website) {
                 return (
-                  <a
+                  <motion.a
                     key={`${subsidiary.id}-${index}`}
                     href={subsidiary.website}
                     target="_blank"
@@ -124,20 +124,30 @@ export function SubsidiariesSection() {
                     className="flex-none block group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/80"
                     style={cardWidth}
                     aria-label={`Visit ${subsidiary.name} website`}
+                    initial={isMobile ? { y: 24, opacity: 0 } : undefined}
+                    whileInView={isMobile ? { y: 0, opacity: 1 } : undefined}
+                    viewport={{ once: true, amount: 0.3 }}
+                    whileTap={{ scale: 0.98, y: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 24, delay: isMobile ? index * 0.05 : 0 }}
                   >
                     {cardContent}
-                  </a>
+                  </motion.a>
                 )
               }
 
               return (
-                <div
+                <motion.div
                   key={`${subsidiary.id}-${index}`}
                   className="flex-none block group"
                   style={cardWidth}
+                  initial={isMobile ? { y: 24, opacity: 0 } : undefined}
+                  whileInView={isMobile ? { y: 0, opacity: 1 } : undefined}
+                  viewport={{ once: true, amount: 0.3 }}
+                  whileTap={{ scale: 0.98, y: 1 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 24, delay: isMobile ? index * 0.05 : 0 }}
                 >
                   {cardContent}
-                </div>
+                </motion.div>
               )
             })}
           </motion.div>
