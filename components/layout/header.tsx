@@ -12,17 +12,7 @@ import { companyInfo, navigationLinks } from "@/lib/data/company-data"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   const getHeaderHeight = () => {
     const el = document.getElementById("site-header")
@@ -58,18 +48,11 @@ export function Header() {
   return (
     <>
       {/* Main navigation */}
-      <motion.header
+      <header
         id="site-header"
-        className={`fixed top-0 left-0 right-0 z-50 w-full border-b transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/95 dark:bg-background/90 backdrop-blur-md supports-backdrop-filter:bg-white/80 dark:supports-backdrop-filter:bg-background/70 shadow-lg"
-            : "bg-white/80 dark:bg-background/60 backdrop-blur"
-        }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        className="fixed top-0 left-0 right-0 z-50 w-full border-b bg-white/90 dark:bg-background/80 backdrop-blur-md shadow-lg supports-[padding-top:env(safe-area-inset-top)]:pt-[env(safe-area-inset-top)]"
       >
-  <div className="container mx-auto px-4 h-16 md:h-20 lg:h-24 flex items-center justify-between pt-[env(safe-area-inset-top)]">
+  <div className="container mx-auto px-4 h-16 md:h-20 lg:h-24 flex items-center justify-between pt-0">
           {/* Logo */}
           <Link href="/" className="shrink-0">
             <div className="flex items-center space-x-2">
@@ -254,7 +237,7 @@ export function Header() {
             </>
           )}
         </AnimatePresence>
-      </motion.header>
+      </header>
     </>
   )
 }

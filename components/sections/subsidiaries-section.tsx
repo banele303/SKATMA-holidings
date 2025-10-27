@@ -1,28 +1,42 @@
 "use client"
 
-import { motion, useAnimation } from "framer-motion"
+import { motion, useAnimation, useReducedMotion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { subsidiaries } from "@/lib/data/company-data"
 import { ExternalLink } from "lucide-react"
-import { useEffect } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 export function SubsidiariesSection() {
   const controls = useAnimation()
+  const prefersReduced = useReducedMotion()
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    controls.start({
-      x: [0, -1920],
-      transition: {
-        x: {
-          repeat: Infinity,
-          repeatType: "loop",
-          duration: 40,
-          ease: "linear",
+    const update = () => setIsMobile(window.innerWidth < 768)
+    update()
+    window.addEventListener("resize", update)
+    return () => window.removeEventListener("resize", update)
+  }, [])
+
+  useEffect(() => {
+    const canAutoplay = !isMobile && !prefersReduced
+    if (canAutoplay) {
+      controls.start({
+        x: [0, -1920],
+        transition: {
+          x: {
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: 40,
+            ease: "linear",
+          },
         },
-      },
-    })
-  }, [controls])
+      })
+    } else {
+      controls.stop()
+    }
+  }, [controls, isMobile, prefersReduced])
 
   return (
     <section
@@ -51,18 +65,19 @@ export function SubsidiariesSection() {
 
       {/* Scrolling Cards Container */}
       <div className="relative">
-        <div className="flex gap-6 py-8">
+        <div className={`flex gap-6 py-8 ${isMobile ? "overflow-x-auto -mx-4 px-4 snap-x snap-mandatory" : ""}`}>
           <motion.div
             className="flex gap-6"
-            animate={controls}
+            animate={!isMobile && !prefersReduced ? controls : undefined}
+            style={{ willChange: "transform" }}
           >
-            {/* Duplicate the array for seamless loop */}
-            {[...subsidiaries, ...subsidiaries, ...subsidiaries].map((subsidiary, index) => {
+            {/* Duplicate the array for seamless loop or single list on mobile */}
+            {(isMobile ? subsidiaries : [...subsidiaries, ...subsidiaries, ...subsidiaries]).map((subsidiary, index) => {
               const cardWidth = { width: "min(360px, calc(100vw / 3 - 1rem))" }
 
               const cardContent = (
                 <Card
-                  className="h-full min-h-[180px] cursor-pointer rounded-3xl border border-white/10 bg-white/10 backdrop-blur-sm hover:border-white/30 hover:bg-white/15 transition-all duration-300 flex flex-col"
+                  className={`h-full min-h-40 sm:min-h-[180px] cursor-pointer rounded-3xl border border-white/10 bg-white/10 backdrop-blur-sm hover:border-white/30 hover:bg-white/15 transition-all duration-300 flex flex-col ${isMobile ? "shrink-0 snap-start" : ""}`}
                 >
                   <CardHeader className="pb-4">
                     <div className="flex items-start justify-between mb-3">
@@ -129,8 +144,8 @@ export function SubsidiariesSection() {
         </div>
 
         {/* Gradient overlays for fade effect */}
-  <div className="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-[#060918] to-transparent pointer-events-none" />
-  <div className="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-[#1c214a] to-transparent pointer-events-none" />
+  <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-linear-to-r from-[#060918] to-transparent pointer-events-none" />
+  <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-linear-to-l from-[#1c214a] to-transparent pointer-events-none" />
       </div>
 
       {/* Stats or Additional Info */}
