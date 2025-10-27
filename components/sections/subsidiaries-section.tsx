@@ -20,15 +20,17 @@ export function SubsidiariesSection() {
   }, [])
 
   useEffect(() => {
-    const canAutoplay = !isMobile && !prefersReduced
-    if (canAutoplay) {
+    // Animate marquee on all devices unless user prefers reduced motion
+    if (!prefersReduced) {
+      const distance = isMobile ? -1400 : -2400
+      const duration = isMobile ? 35 : 45
       controls.start({
-        x: [0, -1920],
+        x: [0, distance],
         transition: {
           x: {
             repeat: Infinity,
             repeatType: "loop",
-            duration: 40,
+            duration,
             ease: "linear",
           },
         },
@@ -65,19 +67,21 @@ export function SubsidiariesSection() {
 
       {/* Scrolling Cards Container */}
       <div className="relative">
-        <div className={`flex gap-6 py-8 ${isMobile ? "overflow-x-auto -mx-4 px-4 snap-x snap-mandatory" : ""}`}>
+        <div className="flex gap-6 py-8 overflow-hidden">
           <motion.div
             className="flex gap-6"
-            animate={!isMobile && !prefersReduced ? controls : undefined}
+            animate={!prefersReduced ? controls : undefined}
             style={{ willChange: "transform" }}
           >
-            {/* Duplicate the array for seamless loop or single list on mobile */}
-            {(isMobile ? subsidiaries : [...subsidiaries, ...subsidiaries, ...subsidiaries]).map((subsidiary, index) => {
-              const cardWidth = { width: "min(360px, calc(100vw / 3 - 1rem))" }
+            {/* Duplicate the array for seamless loop on all devices */}
+            {[...subsidiaries, ...subsidiaries, ...subsidiaries].map((subsidiary, index) => {
+              const cardWidth = {
+                width: isMobile ? "min(220px, 68vw)" : "min(360px, calc(100vw / 3 - 1rem))",
+              }
 
               const cardContent = (
                 <Card
-                  className={`h-full min-h-40 sm:min-h-[180px] cursor-pointer rounded-3xl border border-white/10 bg-white/10 backdrop-blur-sm hover:border-white/30 hover:bg-white/15 transition-all duration-300 flex flex-col ${isMobile ? "shrink-0 snap-start" : ""}`}
+                  className={`h-full min-h-40 sm:min-h-[180px] cursor-pointer rounded-3xl border border-white/10 bg-white/10 backdrop-blur-sm hover:border-white/30 hover:bg-white/15 transition-all duration-300 flex flex-col ${isMobile ? "shrink-0" : ""}`}
                 >
                   <CardHeader className="pb-4">
                     <div className="flex items-start justify-between mb-3">
@@ -124,11 +128,11 @@ export function SubsidiariesSection() {
                     className="flex-none block group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/80"
                     style={cardWidth}
                     aria-label={`Visit ${subsidiary.name} website`}
-                    initial={isMobile ? { y: 24, opacity: 0 } : undefined}
+                    initial={isMobile ? { y: 16, opacity: 0 } : undefined}
                     whileInView={isMobile ? { y: 0, opacity: 1 } : undefined}
                     viewport={{ once: true, amount: 0.3 }}
                     whileTap={{ scale: 0.98, y: 1 }}
-                    transition={{ type: "spring", stiffness: 260, damping: 24, delay: isMobile ? index * 0.05 : 0 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 24, delay: isMobile ? (index % subsidiaries.length) * 0.03 : 0 }}
                   >
                     {cardContent}
                   </motion.a>
@@ -140,11 +144,11 @@ export function SubsidiariesSection() {
                   key={`${subsidiary.id}-${index}`}
                   className="flex-none block group"
                   style={cardWidth}
-                  initial={isMobile ? { y: 24, opacity: 0 } : undefined}
+                  initial={isMobile ? { y: 16, opacity: 0 } : undefined}
                   whileInView={isMobile ? { y: 0, opacity: 1 } : undefined}
                   viewport={{ once: true, amount: 0.3 }}
                   whileTap={{ scale: 0.98, y: 1 }}
-                  transition={{ type: "spring", stiffness: 260, damping: 24, delay: isMobile ? index * 0.05 : 0 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 24, delay: isMobile ? (index % subsidiaries.length) * 0.03 : 0 }}
                 >
                   {cardContent}
                 </motion.div>
@@ -153,9 +157,9 @@ export function SubsidiariesSection() {
           </motion.div>
         </div>
 
-        {/* Gradient overlays for fade effect */}
-  <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-linear-to-r from-[#060918] to-transparent pointer-events-none" />
-  <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-linear-to-l from-[#1c214a] to-transparent pointer-events-none" />
+    {/* Gradient overlays for fade effect */}
+    <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-linear-to-r from-[#060918] to-transparent pointer-events-none" />
+    <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-linear-to-l from-[#1c214a] to-transparent pointer-events-none" />
       </div>
 
       {/* Stats or Additional Info */}

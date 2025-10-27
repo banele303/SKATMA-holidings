@@ -31,18 +31,20 @@ export function BrandsCarousel() {
   }, [])
 
   useEffect(() => {
-    const canAutoplay = !isMobile && !prefersReduced
+    const canAutoplay = !prefersReduced
     if (canAutoplay) {
+      const distance = isMobile ? -1200 : -1600
+      const duration = isMobile ? 22 : 30
       controls.start({
-        x: [0, -1600],
+        x: [0, distance],
         transition: {
           x: {
             repeat: Infinity,
             repeatType: "loop",
-            duration: 30,
-            ease: "linear"
-          }
-        }
+            duration,
+            ease: "linear",
+          },
+        },
       })
     } else {
       controls.stop()
@@ -68,28 +70,24 @@ export function BrandsCarousel() {
         </motion.div>
       </div>
 
-      {/* Scrolling Brands Container */}
-      <div className="relative">
+  {/* Scrolling Brands Container */}
+  <div className="relative">
         {/* Gradient Overlays */}
         <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-linear-to-r from-background to-transparent z-10" />
         <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-linear-to-l from-background to-transparent z-10" />
 
         <motion.div
-          className={`flex gap-4 sm:gap-6 ${isMobile ? "flex-col w-full" : ""}`}
-          animate={!isMobile && !prefersReduced ? controls : undefined}
-          style={{ width: isMobile ? "100%" : "fit-content", willChange: "transform" }}
+          className={`flex gap-4 sm:gap-6`}
+          animate={!prefersReduced ? controls : undefined}
+          style={{ width: "fit-content", willChange: "transform" }}
         >
-          {(isMobile ? brands : duplicatedBrands).map((brand, index) => {
+          {duplicatedBrands.map((brand, index) => {
             const CardInner = (
-              <Card className={`${isMobile ? "w-full" : "w-[300px] sm:w-[320px] md:w-[360px]"} h-[180px] sm:h-[200px] p-2 bg-background hover:shadow-xl transition-all cursor-pointer border-2 hover:border-[#3e3a70]/50`}>
+              <Card className={`${isMobile ? "w-60" : "w-[300px] sm:w-[320px] md:w-[360px]"} ${isMobile ? "h-[150px]" : "h-[180px] sm:h-[200px]"} p-2 bg-background hover:shadow-xl transition-all cursor-pointer border-2 hover:border-[#3e3a70]/50`}>
                 <div className="flex flex-row items-center text-left gap-3 sm:gap-4 h-full">
                   {/* Logo Image */}
-                  <motion.div
-                    className="relative w-28 h-28 sm:w-32 sm:h-32 shrink-0 overflow-hidden"
-                    initial={isMobile ? { y: 12, opacity: 0 } : undefined}
-                    whileInView={isMobile ? { y: 0, opacity: 1 } : undefined}
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{ type: "spring", stiffness: 260, damping: 24 }}
+                  <div
+                    className={`relative ${isMobile ? "w-24 h-24" : "w-28 h-28 sm:w-32 sm:h-32"} shrink-0 overflow-hidden`}
                   >
                     <Image
                       src={brand.image}
@@ -97,16 +95,16 @@ export function BrandsCarousel() {
                       fill
                       className="object-contain"
                     />
-                  </motion.div>
+                  </div>
 
                   <div className="flex flex-col justify-center flex-1">
                     {/* Brand Name */}
-                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#1f2244] dark:text-gray-100 mb-1 sm:mb-2 line-clamp-1">
+                    <h3 className={`${isMobile ? "text-sm" : "text-base sm:text-lg md:text-xl"} font-bold text-[#1f2244] dark:text-gray-100 mb-1 sm:mb-2 line-clamp-1`}>
                       {brand.name}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-xs sm:text-sm text-[#1f2244]/75 dark:text-gray-400 line-clamp-2">
+                    <p className={`${isMobile ? "text-[11px]" : "text-xs sm:text-sm"} text-[#1f2244]/75 dark:text-gray-400 line-clamp-2`}>
                       {brand.description}
                     </p>
                   </div>
@@ -117,13 +115,9 @@ export function BrandsCarousel() {
             const content = (
               <motion.div
                 key={`${brand.id}-${index}`}
-                initial={isMobile ? { y: 24, opacity: 0 } : undefined}
-                whileInView={isMobile ? { y: 0, opacity: 1 } : undefined}
-                viewport={{ once: true, amount: 0.3 }}
                 whileHover={!isMobile ? { scale: 1.05, y: -5 } : undefined}
                 whileTap={{ scale: 0.98, y: 1 }}
-                transition={{ duration: 0.25, delay: isMobile ? index * 0.05 : 0 }}
-                className={`${isMobile ? "w-full" : ""}`}
+                transition={{ duration: 0.2 }}
               >
                 {CardInner}
               </motion.div>
@@ -137,7 +131,7 @@ export function BrandsCarousel() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visit ${brand.name} website`}
-                className={`block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3e3a70] ${isMobile ? "w-full" : ""}`}
+                className={`block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3e3a70]`}
               >
                 {content}
               </a>

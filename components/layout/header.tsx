@@ -50,7 +50,7 @@ export function Header() {
       {/* Main navigation */}
       <header
         id="site-header"
-        className="fixed top-0 left-0 right-0 z-50 w-full border-b bg-white/90 dark:bg-background/80 backdrop-blur-md shadow-lg supports-[padding-top:env(safe-area-inset-top)]:pt-[env(safe-area-inset-top)]"
+        className="fixed top-0 left-0 right-0 z-60 w-full border-b bg-white/90 dark:bg-background/80 backdrop-blur-md shadow-lg supports-[padding-top:env(safe-area-inset-top)]:pt-[env(safe-area-inset-top)]"
       >
   <div className="container mx-auto px-4 h-16 md:h-20 lg:h-24 flex items-center justify-between pt-0">
           {/* Logo */}
@@ -167,7 +167,7 @@ export function Header() {
             <>
               {/* Backdrop */}
               <motion.div
-                className="fixed inset-0 z-40 md:hidden bg-black/50 backdrop-blur-sm"
+                className="fixed inset-0 z-50 md:hidden bg-black/50 backdrop-blur-sm"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
