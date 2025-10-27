@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { services } from "@/lib/data/company-data"
 import { useState } from "react"
@@ -30,12 +31,12 @@ export function ServicesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-sm font-semibold text-red-600 uppercase tracking-wide mb-2">
+          <h2 className="text-sm font-semibold text-[#3e3a70] dark:text-white/80 uppercase tracking-wide mb-2">
             What SKATMA Holdings Offers
           </h2>
-          <h3 className="text-4xl md:text-5xl font-bold mb-4">
+          <h3 className="text-4xl md:text-5xl font-bold mb-4 font-display tracking-tight text-[#1f2244] dark:text-white">
             We Inspire and Offer
-            <span className="block text-red-600">Excellent Services</span>
+            <span className="block text-[#1f2244] dark:text-white/90">Excellent Services</span>
           </h3>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Our diverse portfolio of services spans multiple industries, providing comprehensive 
@@ -45,20 +46,14 @@ export function ServicesSection() {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
+          {services.map((service, index) => {
+            const isExternalLink = service.website?.startsWith("http")
+
+            const card = (
               <Card
-                className={`h-full cursor-pointer transition-all duration-300 hover:shadow-xl overflow-hidden p-2 ${
-                  hoveredCard === service.id ? "border-red-600 shadow-lg" : ""
+                className={`relative h-full cursor-pointer transition-all duration-300 hover:shadow-xl overflow-hidden p-2 bg-white/95 dark:bg-white/10 dark:border-white/10 dark:text-white ${
+                  hoveredCard === service.id ? "border-[#1f2244] shadow-lg dark:border-white" : ""
                 }`}
-                onMouseEnter={() => setHoveredCard(service.id)}
-                onMouseLeave={() => setHoveredCard(null)}
               >
                 {/* Image Section */}
                 <div className="relative h-48 w-full rounded-lg overflow-hidden mb-4">
@@ -66,17 +61,17 @@ export function ServicesSection() {
                     src={serviceImages[service.id] || service.image}
                     alt={service.name}
                     fill
-                    className="object-cover transition-transform duration-300 hover:scale-110"
+                    className="object-cover transition-transform duration-300 hover:scale-105 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/20 hover:bg-black/10 transition-all" />
+                  <div className="absolute inset-0 bg-black/20 transition-all hover:bg-black/10 group-hover:bg-black/10" />
                 </div>
 
                 <CardContent className="space-y-4 p-0">
-                  <CardTitle className="text-xl font-bold text-red-600">
+                  <CardTitle className="text-xl font-bold text-[#1f2244] dark:text-white">
                     {service.name}
                   </CardTitle>
                   
-                  <CardDescription className="text-sm leading-relaxed">
+                  <CardDescription className="text-sm leading-relaxed dark:text-white/70">
                     {service.description}
                   </CardDescription>
                   
@@ -88,12 +83,12 @@ export function ServicesSection() {
                     }}
                     className="overflow-hidden"
                   >
-                    <div className="space-y-2 pt-4 border-t">
-                      <h4 className="font-semibold text-sm">Key Features:</h4>
+                    <div className="space-y-2 pt-4 border-t dark:border-white/10">
+                      <h4 className="font-semibold text-sm dark:text-white">Key Features:</h4>
                       <ul className="space-y-1">
                         {service.features.slice(0, 3).map((feature, idx) => (
-                          <li key={idx} className="text-xs text-muted-foreground flex items-start">
-                            <span className="text-red-600 mr-1">•</span>
+                          <li key={idx} className="text-xs text-muted-foreground dark:text-white/70 flex items-start">
+                            <span className="text-[#3e3a70] dark:text-white mr-1">•</span>
                             {feature}
                           </li>
                         ))}
@@ -102,16 +97,51 @@ export function ServicesSection() {
                   </motion.div>
 
                   <Button
+                    asChild
                     variant="ghost"
-                    className="w-full group hover:bg-red-50 hover:text-red-600"
+                    className="group w-full hover:bg-[#d6d7dc]/40 hover:text-[#1f2244] dark:hover:text-white group-hover:bg-[#d6d7dc]/40 group-hover:text-[#1f2244] dark:group-hover:text-white"
                   >
-                    See Details
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <span className="flex items-center justify-center">
+                      See Details
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
                   </Button>
                 </CardContent>
               </Card>
-            </motion.div>
-          ))}
+            )
+
+            return (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                {service.website ? (
+                  <Link
+                    href={service.website}
+                    target={isExternalLink ? "_blank" : undefined}
+                    rel={isExternalLink ? "noopener noreferrer" : undefined}
+                    className="group block h-full"
+                    prefetch={false}
+                    onMouseEnter={() => setHoveredCard(service.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    {card}
+                  </Link>
+                ) : (
+                  <div
+                    className="group block h-full"
+                    onMouseEnter={() => setHoveredCard(service.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    {card}
+                  </div>
+                )}
+              </motion.div>
+            )
+          })}
         </div>
 
         {/* View All Services Button */}
@@ -122,7 +152,10 @@ export function ServicesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <Button size="lg" className="bg-red-600 hover:bg-red-700">
+          <Button
+            size="lg"
+            className="bg-[#1f2244] hover:bg-[#3e3a70] dark:bg-white dark:text-[#1f2244] dark:hover:bg-white/80 dark:border dark:border-white/70 dark:shadow-lg"
+          >
             See All Services
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>

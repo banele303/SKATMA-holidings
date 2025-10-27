@@ -20,12 +20,12 @@ export function NewsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-sm font-bold text-red-600 uppercase tracking-wide mb-3">
+          <h2 className="text-sm font-bold text-[#3e3a70] uppercase tracking-wide mb-3">
             SKATMA Holdings Blog & News
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="text-foreground">Get Update</span>
-            <span className="block text-red-600 mt-2">Blog & News</span>
+            <span className="block text-[#3e3a70] mt-2">Blog & News</span>
           </h3>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Stay informed with the latest insights, industry trends, and company updates 
@@ -54,7 +54,7 @@ export function NewsSection() {
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all" />
                   <div className="absolute top-4 left-4">
-                    <Badge className="bg-red-600">{post.category}</Badge>
+                    <Badge className="bg-[#1f2244] text-white">{post.category}</Badge>
                   </div>
                 </div>
 
@@ -75,7 +75,7 @@ export function NewsSection() {
                     </div>
                   </div>
 
-                  <CardTitle className="text-xl group-hover:text-red-600 transition-colors line-clamp-2">
+                  <CardTitle className="text-xl group-hover:text-[#3e3a70] transition-colors line-clamp-2">
                     {post.title}
                   </CardTitle>
                   <CardDescription className="line-clamp-3 text-foreground/80">
@@ -92,7 +92,7 @@ export function NewsSection() {
                     <Button 
                       variant="ghost" 
                       size="sm"
-                      className="group-hover:text-red-600 transition-colors"
+                      className="group-hover:text-[#3e3a70] transition-colors"
                     >
                       Read More
                       <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -112,7 +112,7 @@ export function NewsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <Button size="lg" variant="outline" className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white">
+          <Button size="lg" variant="outline" className="border-[#1f2244] text-[#1f2244] hover:bg-[#1f2244] hover:text-white">
             View All Articles
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>

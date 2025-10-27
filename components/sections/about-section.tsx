@@ -73,10 +73,10 @@ export function AboutSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-sm font-semibold text-red-600 uppercase tracking-wide mb-2">
+          <h2 className="text-sm font-semibold text-[#3e3a70] dark:text-white/80 uppercase tracking-wide mb-2">
             SKATMA Holdings Overview
           </h2>
-          <h3 className="text-4xl md:text-5xl font-bold mb-4">
+          <h3 className="text-4xl md:text-5xl font-bold mb-4 font-display tracking-tight">
             {companyOverview.title}
           </h3>
         </motion.div>
@@ -109,8 +109,8 @@ export function AboutSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <div className="flex items-center gap-3 md:gap-4">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-red-100 rounded-full flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-red-600" />
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-[#1f2244]/15 dark:bg-white/15 rounded-full flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-[#1f2244] dark:text-white" />
                 </div>
                 <div>
                   <div className="text-xl md:text-2xl font-bold">
@@ -135,7 +135,7 @@ export function AboutSection() {
             </p>
 
             <div className="space-y-4">
-              <h4 className="font-bold text-xl">Our Comprehensive Approach:</h4>
+              <h4 className="font-bold text-xl font-display tracking-tight">Our Comprehensive Approach:</h4>
               <p className="text-muted-foreground leading-relaxed">
                 At SKATMA Holdings, we understand that successful business partnerships require more than 
                 just surface-level collaboration. Our approach involves deep integration with our clients' 
@@ -144,25 +144,25 @@ export function AboutSection() {
               
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-[#3e3a70] dark:text-white mt-0.5 shrink-0" />
                   <span className="text-muted-foreground">
                     Deep integration with client vision and objectives
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-[#3e3a70] dark:text-white mt-0.5 shrink-0" />
                   <span className="text-muted-foreground">
                     Cross-industry expertise and insights
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-[#3e3a70] dark:text-white mt-0.5 shrink-0" />
                   <span className="text-muted-foreground">
                     Sustainable growth and long-term partnerships
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-[#3e3a70] dark:text-white mt-0.5 shrink-0" />
                   <span className="text-muted-foreground">
                     Innovative solutions tailored to your needs
                   </span>
@@ -170,7 +170,7 @@ export function AboutSection() {
               </ul>
             </div>
 
-            <Button size="lg" className="bg-red-600 hover:bg-red-700">
+            <Button size="lg" className="bg-[#1f2244] hover:bg-[#3e3a70]">
               Learn More About Us
             </Button>
           </motion.div>
@@ -184,7 +184,7 @@ export function AboutSection() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <h3 className="text-3xl font-bold text-center mb-12">
+          <h3 className="text-3xl font-bold text-center mb-12 font-display tracking-tight">
             Our Core Principles
           </h3>
           
@@ -199,8 +199,8 @@ export function AboutSection() {
               >
                 <Card className="h-full hover:shadow-lg transition-shadow duration-300">
                   <CardContent className="p-6 space-y-4">
-                    <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                      <principle.icon className="w-6 h-6 text-red-600" />
+                    <div className="w-12 h-12 bg-[#1f2244]/15 dark:bg-white/10 rounded-lg flex items-center justify-center">
+                      <principle.icon className="w-6 h-6 text-[#1f2244] dark:text-white" />
                     </div>
                     <h4 className="font-bold text-lg">{principle.title}</h4>
                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -215,7 +215,7 @@ export function AboutSection() {
 
         {/* Stats Section */}
         <motion.div
-          className="bg-linear-to-r from-blue-600 via-purple-600 to-red-600 text-white rounded-2xl p-12 shadow-2xl"
+          className="bg-linear-to-r from-[#1f2244] via-[#3e3a70] to-[#8a8c91] text-white rounded-2xl p-12 shadow-2xl"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}

@@ -25,7 +25,10 @@ export function SubsidiariesSection() {
   }, [controls])
 
   return (
-    <section id="subsidiaries" className="py-20 bg-muted/30 overflow-hidden">
+    <section
+      id="subsidiaries"
+      className="py-24 overflow-hidden bg-gradient-to-br from-[#060918] via-[#111832] to-[#1c214a] text-white"
+    >
       <div className="container mx-auto px-4 mb-12">
         <motion.div
           className="text-center"
@@ -34,16 +37,14 @@ export function SubsidiariesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-sm font-semibold text-red-600 uppercase tracking-wide mb-2">
-            Our Business Portfolio
+          <h2 className="text-sm font-semibold tracking-[0.4em] text-[#8aa2ff] uppercase mb-3">
+            Our Brand Portfolio
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold mb-4">
-            Diverse Subsidiaries
-            <span className="block text-red-600">Driving Excellence</span>
+            Discover our diverse range of brands, each excelling in their respective industries
           </h3>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Explore our dynamic portfolio of subsidiary companies, each specializing 
-            in delivering exceptional services across different sectors.
+          <p className="max-w-2xl mx-auto text-lg text-white/70">
+            Explore our subsidiaries to learn how every brand brings a unique edge to the SKATMA Holdings ecosystem.
           </p>
         </motion.div>
       </div>
@@ -56,51 +57,80 @@ export function SubsidiariesSection() {
             animate={controls}
           >
             {/* Duplicate the array for seamless loop */}
-            {[...subsidiaries, ...subsidiaries, ...subsidiaries].map((subsidiary, index) => (
-              <Card
-                key={`${subsidiary.id}-${index}`}
-                className="min-w-[400px] max-w-[400px] hover:shadow-xl transition-all duration-300 cursor-pointer group"
-              >
-                <CardHeader>
-                  <div className="flex items-start justify-between mb-2">
-                    <Badge variant="outline" className="border-red-600 text-red-600">
-                      {subsidiary.id}/{subsidiaries.length}
-                    </Badge>
-                    {subsidiary.website && (
-                      <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-red-600 transition-colors" />
-                    )}
-                  </div>
-                  <CardTitle className="text-2xl font-bold group-hover:text-red-600 transition-colors">
-                    {subsidiary.name}
-                  </CardTitle>
-                  <CardDescription className="text-base">
-                    {subsidiary.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                    {subsidiary.details}
-                  </p>
-                  
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-sm">Services:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {subsidiary.services.map((service, idx) => (
-                        <Badge key={idx} variant="secondary" className="text-xs">
-                          {service}
-                        </Badge>
-                      ))}
+            {[...subsidiaries, ...subsidiaries, ...subsidiaries].map((subsidiary, index) => {
+              const cardWidth = { width: "min(360px, calc(100vw / 3 - 1rem))" }
+
+              const cardContent = (
+                <Card
+                  className="h-full min-h-[180px] cursor-pointer rounded-3xl border border-white/10 bg-white/10 backdrop-blur-sm hover:border-white/30 hover:bg-white/15 transition-all duration-300 flex flex-col"
+                >
+                  <CardHeader className="pb-4">
+                    <div className="flex items-start justify-between mb-3">
+                      <Badge variant="outline" className="border-white/50 text-white/80">
+                        {subsidiary.id}/{subsidiaries.length}
+                      </Badge>
+                      {subsidiary.website && (
+                        <ExternalLink className="h-4 w-4 text-white/50 group-hover:text-white transition-colors" />
+                      )}
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                    <CardTitle className="text-2xl font-bold text-white group-hover:text-white">
+                      {subsidiary.name}
+                    </CardTitle>
+                    <CardDescription className="text-base text-white/70">
+                      {subsidiary.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="pt-0 pb-5 flex-1 flex flex-col justify-between">
+                    <p className="text-sm text-white/70 mb-4 line-clamp-3">
+                      {subsidiary.details}
+                    </p>
+                    
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-sm text-white/80">Services:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {subsidiary.services.map((service, idx) => (
+                          <Badge key={idx} variant="secondary" className="text-xs bg-white/15 text-white border border-white/10">
+                            {service}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )
+
+              if (subsidiary.website) {
+                return (
+                  <a
+                    key={`${subsidiary.id}-${index}`}
+                    href={subsidiary.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-none block group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/80"
+                    style={cardWidth}
+                    aria-label={`Visit ${subsidiary.name} website`}
+                  >
+                    {cardContent}
+                  </a>
+                )
+              }
+
+              return (
+                <div
+                  key={`${subsidiary.id}-${index}`}
+                  className="flex-none block group"
+                  style={cardWidth}
+                >
+                  {cardContent}
+                </div>
+              )
+            })}
           </motion.div>
         </div>
 
         {/* Gradient overlays for fade effect */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-background to-transparent pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-background to-transparent pointer-events-none" />
+  <div className="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-[#060918] to-transparent pointer-events-none" />
+  <div className="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-[#1c214a] to-transparent pointer-events-none" />
       </div>
 
       {/* Stats or Additional Info */}
@@ -113,20 +143,20 @@ export function SubsidiariesSection() {
           transition={{ duration: 0.6 }}
         >
           <div className="space-y-2">
-            <div className="text-3xl font-bold text-red-600">{subsidiaries.length}</div>
-            <div className="text-sm text-muted-foreground">Active Subsidiaries</div>
+            <div className="text-3xl font-bold text-white">{subsidiaries.length}</div>
+            <div className="text-sm text-white/70">Active Subsidiaries</div>
           </div>
           <div className="space-y-2">
-            <div className="text-3xl font-bold text-red-600">10+</div>
-            <div className="text-sm text-muted-foreground">Years Combined Experience</div>
+            <div className="text-3xl font-bold text-white">10+</div>
+            <div className="text-sm text-white/70">Years Combined Experience</div>
           </div>
           <div className="space-y-2">
-            <div className="text-3xl font-bold text-red-600">500+</div>
-            <div className="text-sm text-muted-foreground">Employees</div>
+            <div className="text-3xl font-bold text-white">500+</div>
+            <div className="text-sm text-white/70">Employees</div>
           </div>
           <div className="space-y-2">
-            <div className="text-3xl font-bold text-red-600">24/7</div>
-            <div className="text-sm text-muted-foreground">Customer Support</div>
+            <div className="text-3xl font-bold text-white">24/7</div>
+            <div className="text-sm text-white/70">Customer Support</div>
           </div>
         </motion.div>
       </div>

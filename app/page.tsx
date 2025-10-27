@@ -9,6 +9,11 @@ import { AboutSection } from "@/components/sections/about-section";
 import { NewsSection } from "@/components/sections/news-section";
 import { BrandsCarousel } from "@/components/sections/brands-carousel";
 import { RFQSection } from "@/components/sections/rfq-section";
+import { TestimonialsSection } from "@/components/sections/testimonials-section";
+import { CTABanner } from "@/components/layout/cta-banner";
+import { CaseStudiesSection } from "@/components/sections/case-studies-section";
+import { FAQSection } from "@/components/sections/faq-section";
+import { AwardsSection } from "@/components/sections/awards-section";
 
 export default function Home() {
   return (
@@ -20,9 +25,14 @@ export default function Home() {
       <BrandsCarousel />
       <AboutSection />
       <ServicesSection />
+  <CaseStudiesSection />
+  <TestimonialsSection />
       <SubsidiariesSection />
       <NewsSection />
+  <FAQSection />
       <RFQSection />
+  <CTABanner />
+  <AwardsSection />
       <Footer />
     </main>
   );

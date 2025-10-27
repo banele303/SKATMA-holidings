@@ -111,7 +111,7 @@ export default function AboutPage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative py-20 bg-linear-to-br from-red-900/10 via-background to-blue-900/10">
+      <section className="relative py-20 bg-linear-to-br from-[#1f2244]/12 via-background to-[#3e3a70]/12">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center max-w-4xl mx-auto"
@@ -119,9 +119,9 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="mb-4 bg-red-600 text-white">About SKATMA Holdings</Badge>
+            <Badge className="mb-4 bg-[#1f2244] text-white">About SKATMA Holdings</Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Building Excellence Across <span className="text-red-600">Multiple Industries</span>
+              Building Excellence Across <span className="text-[#3e3a70]">Multiple Industries</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
               SKATMA Holdings is a diversified business conglomerate committed to delivering exceptional 
@@ -141,9 +141,9 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Card className="h-full bg-linear-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20 border-2 border-red-200 dark:border-red-900">
+              <Card className="h-full bg-linear-to-br from-[#d6d7dc]/40 to-white dark:from-[#1f2244]/30 dark:to-[#3e3a70]/30 border-2 border-[#d6d7dc] dark:border-[#3e3a70]">
                 <CardContent className="p-8">
-                  <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 bg-[#1f2244] rounded-lg flex items-center justify-center mb-6">
                     <Target className="w-8 h-8 text-white" />
                   </div>
                   <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
@@ -163,9 +163,9 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Card className="h-full bg-linear-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border-2 border-blue-200 dark:border-blue-900">
+              <Card className="h-full bg-linear-to-br from-[#f1f1f5] to-[#d6d7dc]/60 dark:from-[#1f2244]/40 dark:to-[#3e3a70]/35 border-2 border-[#d6d7dc] dark:border-[#3e3a70]">
                 <CardContent className="p-8">
-                  <div className="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 bg-[#3e3a70] rounded-lg flex items-center justify-center mb-6">
                     <Globe className="w-8 h-8 text-white" />
                   </div>
                   <h2 className="text-3xl font-bold mb-4">Our Vision</h2>
@@ -193,7 +193,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Our Core <span className="text-red-600">Values</span>
+              Our Core <span className="text-[#3e3a70]">Values</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               The principles that guide our decisions and shape our culture
@@ -211,8 +211,8 @@ export default function AboutPage() {
               >
                 <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                   <CardContent className="p-6">
-                    <div className="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center mb-4">
-                      <value.icon className="w-7 h-7 text-red-600" />
+                    <div className="w-14 h-14 bg-[#1f2244]/15 dark:bg-[#3e3a70]/30 rounded-lg flex items-center justify-center mb-4">
+                      <value.icon className="w-7 h-7 text-[#1f2244] dark:text-[#d6d7dc]" />
                     </div>
                     <h3 className="text-xl font-bold mb-3">{value.title}</h3>
                     <p className="text-muted-foreground leading-relaxed">
@@ -237,7 +237,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Our <span className="text-red-600">Journey</span>
+              Our <span className="text-[#3e3a70]">Journey</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               From humble beginnings to industry leadership
@@ -248,15 +248,15 @@ export default function AboutPage() {
             {timeline.map((item, index) => (
               <motion.div
                 key={item.year}
-                className="relative pl-8 pb-12 border-l-2 border-red-200 dark:border-red-900 last:pb-0"
+                className="relative pl-8 pb-12 border-l-2 border-[#d6d7dc] dark:border-[#3e3a70] last:pb-0"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="absolute -left-3 top-0 w-6 h-6 bg-red-600 rounded-full border-4 border-background" />
+                <div className="absolute -left-3 top-0 w-6 h-6 bg-[#1f2244] rounded-full border-4 border-background" />
                 <div className="bg-card border rounded-lg p-6 hover:shadow-lg transition-shadow">
-                  <Badge className="mb-2 bg-red-600 text-white">{item.year}</Badge>
+                  <Badge className="mb-2 bg-[#1f2244] text-white">{item.year}</Badge>
                   <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
                   <p className="text-muted-foreground">{item.description}</p>
                 </div>
@@ -314,7 +314,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Meet Our <span className="text-red-600">Team</span>
+              Meet Our <span className="text-[#3e3a70]">Team</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Passionate professionals dedicated to your success
@@ -332,8 +332,8 @@ export default function AboutPage() {
               >
                 <Card className="h-full text-center hover:shadow-xl transition-all duration-300">
                   <CardContent className="p-6">
-                    <div className="w-20 h-20 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Users className="w-10 h-10 text-red-600" />
+                    <div className="w-20 h-20 bg-[#1f2244]/15 dark:bg-[#3e3a70]/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Users className="w-10 h-10 text-[#1f2244] dark:text-[#d6d7dc]" />
                     </div>
                     <h3 className="text-xl font-bold mb-3">{department.name}</h3>
                     <p className="text-sm text-muted-foreground">
@@ -348,7 +348,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-linear-to-r from-blue-600 via-purple-600 to-red-600 text-white">
+  <section className="py-20 bg-linear-to-r from-[#1f2244] via-[#3e3a70] to-[#8a8c91] text-white">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16"

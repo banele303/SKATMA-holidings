@@ -67,7 +67,7 @@ export function BrandsCarousel() {
           className="text-center"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Our <span className="text-red-600">Brand Portfolio</span>
+            Our <span className="text-[#3e3a70]">Brand Portfolio</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Discover our diverse range of brands, each excelling in their respective industries
@@ -92,7 +92,7 @@ export function BrandsCarousel() {
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ duration: 0.3 }}
             >
-              <Card className="w-[320px] sm:w-[320px] h-[200px] sm:h-auto p-2 sm:p-2 bg-background hover:shadow-xl transition-all cursor-pointer border-2 hover:border-red-600/50">
+              <Card className="w-[320px] sm:w-[320px] h-[200px] sm:h-auto p-2 sm:p-2 bg-background hover:shadow-xl transition-all cursor-pointer border-2 hover:border-[#3e3a70]/50">
                 <div className="flex sm:flex-col items-center sm:items-center text-center space-x-4 sm:space-x-0 sm:space-y-4 h-full">
                   {/* Logo Image */}
                   <div className="relative w-32 h-32 sm:w-40 sm:h-40 shrink-0 overflow-hidden ">
@@ -106,18 +106,18 @@ export function BrandsCarousel() {
 
                   <div className="flex flex-col justify-center text-left sm:text-center flex-1">
                     {/* Brand Name */}
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#1f2244] dark:text-gray-100 mb-2">
                       {brand.name}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 line-clamp-2 sm:line-clamp-3">
+                    <p className="text-xs sm:text-sm text-[#1f2244]/75 dark:text-gray-400 line-clamp-2 sm:line-clamp-3">
                       {brand.description}
                     </p>
                   </div>
 
                   {/* Decorative Line - Hidden on mobile */}
-                  <div className="hidden sm:block w-16 h-1 bg-linear-to-r from-red-600 to-orange-500 rounded-full" />
+                  <div className="hidden sm:block w-16 h-1 bg-linear-to-r from-[#1f2244] to-[#3e3a70] rounded-full" />
                 </div>
               </Card>
             </motion.div>
@@ -130,7 +130,7 @@ export function BrandsCarousel() {
         {brands.map((brand) => (
           <div
             key={brand.id}
-            className="w-2 h-2 rounded-full bg-red-600/30 hover:bg-red-600 transition-all cursor-pointer"
+            className="w-2 h-2 rounded-full bg-[#1f2244]/30 hover:bg-[#3e3a70] transition-all cursor-pointer"
           />
         ))}
       </div>

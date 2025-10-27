@@ -38,9 +38,14 @@ export function Footer() {
   ]
 
   return (
-    <footer id="contact" className="bg-background border-t">
+    <footer id="contact" className="relative bg-background/80 backdrop-blur border-t">
+      {/* subtle dotted overlay */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{ backgroundImage: `radial-gradient(var(--dot-color) 1px, transparent 1px)`, backgroundSize: "18px 18px" }}
+      />
       {/* Main Footer */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <motion.div
@@ -57,7 +62,7 @@ export function Footer() {
               height={60}
               className="h-16 w-auto object-contain"
             />
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p className="text-sm text-[#1f2244]/80 dark:text-gray-300">
               {companyInfo.description}
             </p>
             <div className="flex space-x-2">
@@ -66,7 +71,7 @@ export function Footer() {
                   key={social.label}
                   variant="outline"
                   size="icon"
-                  className="h-8 w-8 hover:bg-red-600 hover:text-white hover:border-red-600"
+                  className="h-8 w-8 hover:bg-[#1f2244] hover:text-white hover:border-[#1f2244]"
                   aria-label={social.label}
                 >
                   <social.icon className="h-4 w-4" />
@@ -82,13 +87,13 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h3 className="font-bold text-lg mb-4 text-gray-900 dark:text-gray-100">Company</h3>
+            <h3 className="font-bold text-lg mb-4 text-[#1f2244] dark:text-gray-100">Company</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-sm text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors"
+                    className="text-sm text-[#1f2244]/80 dark:text-gray-300 hover:text-[#3e3a70] transition-colors"
                   >
                     {link.name}
                   </a>
@@ -104,13 +109,13 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="font-bold text-lg mb-4 text-gray-900 dark:text-gray-100">Our Services</h3>
+            <h3 className="font-bold text-lg mb-4 text-[#1f2244] dark:text-gray-100">Our Services</h3>
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-sm text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors"
+                    className="text-sm text-[#1f2244]/80 dark:text-gray-300 hover:text-[#3e3a70] transition-colors"
                   >
                     {link.name}
                   </a>
@@ -126,35 +131,35 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h3 className="font-bold text-lg mb-4 text-gray-900 dark:text-gray-100">Contact Us</h3>
+            <h3 className="font-bold text-lg mb-4 text-[#1f2244] dark:text-gray-100">Contact Us</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 text-red-600 mt-0.5 shrink-0" />
-                <span className="text-sm text-gray-700 dark:text-gray-300">
+                <MapPin className="h-4 w-4 text-[#3e3a70] mt-0.5 shrink-0" />
+                <span className="text-sm text-[#1f2244]/80 dark:text-gray-300">
                   {companyInfo.address}
                 </span>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-red-600 shrink-0" />
+                <Phone className="h-4 w-4 text-[#3e3a70] shrink-0" />
                 <a
                   href={`tel:${companyInfo.phone}`}
-                  className="text-sm text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors"
+                  className="text-sm text-[#1f2244]/80 dark:text-gray-300 hover:text-[#3e3a70] transition-colors"
                 >
                   {companyInfo.phone}
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-red-600 shrink-0" />
+                <Mail className="h-4 w-4 text-[#3e3a70] shrink-0" />
                 <a
                   href={`mailto:${companyInfo.email}`}
-                  className="text-sm text-gray-700 dark:text-gray-300 hover:text-red-600 transition-colors"
+                  className="text-sm text-[#1f2244]/80 dark:text-gray-300 hover:text-[#3e3a70] transition-colors"
                 >
                   {companyInfo.email}
                 </a>
               </li>
             </ul>
             <div className="mt-4">
-              <Button className="w-full bg-red-600 hover:bg-red-700">
+              <Button className="w-full bg-[#1f2244] hover:bg-[#3e3a70]">
                 Get in Touch
               </Button>
             </div>
@@ -170,26 +175,26 @@ export function Footer() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <div className="max-w-2xl mx-auto text-center">
-            <h3 className="font-bold text-xl mb-2 text-gray-900 dark:text-gray-100">Stay Updated</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
+            <h3 className="font-bold text-xl mb-2 text-[#1f2244] dark:text-gray-100 font-display tracking-tight">Stay Updated</h3>
+            <p className="text-[#1f2244]/80 dark:text-gray-300 mb-4">
               Subscribe to our newsletter for the latest news and updates
             </p>
             <div className="flex gap-2 max-w-md mx-auto">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-2 rounded-md border bg-background text-foreground"
+                className="flex-1 px-4 py-2 rounded-md border border-[#d6d7dc] bg-background text-foreground focus:border-[#3e3a70] focus:ring-2 focus:ring-[#3e3a70]/30"
               />
-              <Button className="bg-red-600 hover:bg-red-700">Subscribe</Button>
+              <Button className="bg-[#1f2244] hover:bg-[#3e3a70] text-white">Subscribe</Button>
             </div>
           </div>
         </motion.div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t bg-muted/30">
+      <div className="border-t bg-muted/30 relative z-10">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-700 dark:text-gray-300">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#1f2244]/80 dark:text-gray-300">
             <p>
               Copyright © {currentYear} skatmaholdings | {companyInfo.regNumber}
             </p>
@@ -198,7 +203,7 @@ export function Footer() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="hover:text-red-600 transition-colors text-gray-700 dark:text-gray-300"
+                  className="hover:text-[#3e3a70] transition-colors text-[#1f2244]/80 dark:text-gray-300"
                 >
                   {link.name}
                 </a>

@@ -11,9 +11,9 @@ export const companyInfo = {
   workingHours: "Mon-Fri: 8.00am - 16.00pm",
   regNumber: "Reg No: 2019/537731/07",
   theme: {
-    primary: "#dc2626", // red-600
-    secondary: "#b91c1c", // red-700
-    accent: "#ef4444" // red-500
+    primary: "#1f2244",
+    secondary: "#3e3a70",
+    accent: "#d6d7dc"
   }
 }
 
@@ -24,7 +24,8 @@ export const subsidiaries = [
     description: "Providing exquisite Dining and Bar tendering experience.",
     details: "Cabal Villa stands as a premier dining destination, offering an exceptional culinary journey combined with professional bar services. Our establishment prides itself on creating memorable experiences through expertly crafted cocktails, fine wines, and gourmet cuisine. With a sophisticated atmosphere and impeccable service, we cater to both intimate gatherings and corporate events.",
     services: ["Fine Dining", "Bar Services", "Event Hosting", "Corporate Catering"],
-    image: "/images/cabal-villa.jpg"
+    image: "/images/cabal-villa.jpg",
+    website: "https://cabal-villa.vercel.app/"
   },
   {
     id: 2,
@@ -32,7 +33,8 @@ export const subsidiaries = [
     description: "We specialize in producing and supplying durable, high-quality bricks for all types of construction.",
     details: "MSTA Holdings is a leading manufacturer and supplier of premium construction materials, specializing in high-grade bricks and building supplies. Our state-of-the-art production facilities ensure consistent quality and durability, meeting the demanding requirements of residential, commercial, and industrial construction projects. We are committed to sustainable manufacturing practices while maintaining competitive pricing.",
     services: ["Brick Manufacturing", "Construction Materials", "Quality Assurance", "Logistics & Delivery"],
-    image: "/images/msta-holdings.jpg"
+    image: "/images/msta-holdings.jpg",
+    website: "https://www.stmatechnicaldevelopment.co.za/"
   },
   {
     id: 3,
@@ -40,7 +42,8 @@ export const subsidiaries = [
     description: "A multi-facade Bar, Restaurant and Car washing company.",
     details: "Lumveleni represents the perfect fusion of hospitality and automotive services. Our unique business model combines a vibrant bar and restaurant experience with professional car washing services. Customers can enjoy freshly prepared meals and refreshing beverages while their vehicles receive top-quality cleaning and detailing services. This innovative approach maximizes convenience and customer satisfaction.",
     services: ["Restaurant Services", "Bar & Beverages", "Car Wash & Detailing", "Customer Lounge"],
-    image: "/images/lumveleni.jpg"
+    image: "/images/lumveleni.jpg",
+    website: "https://cabal-villa.vercel.app/lumveleni"
   },
   {
     id: 4,
@@ -49,7 +52,7 @@ export const subsidiaries = [
     details: "Agri-nema serves as our agricultural powerhouse, implementing cutting-edge farming techniques and sustainable practices. Our operations span both crop cultivation and livestock management, ensuring food security and supporting local communities. We utilize modern agricultural technology, precision farming methods, and sustainable resource management to maximize productivity while preserving environmental integrity.",
     services: ["Crop Production", "Livestock Management", "Sustainable Agriculture", "Food Security"],
     image: "/images/agri-nema.jpg",
-    website: "https://agrinemafarm.co.za/"
+    website: "https://www.agrinema-farm.co.za/"
   }
 ]
 
@@ -63,7 +66,7 @@ export const services = [
     benefits: ["Fresh Organic Produce", "Environmental Sustainability", "Local Food Security", "Community Employment", "Economic Growth"],
     icon: "🌾",
     image: "/images/farming.jpg",
-    website: "https://agrinemafarm.co.za/"
+  website: "https://www.agrinema-farm.co.za/"
   },
   {
     id: "carwash",
@@ -73,7 +76,8 @@ export const services = [
     features: ["Eco-Friendly Products", "Professional Detailing", "Interior Cleaning", "Protective Coatings", "Express Services", "Quality Assurance"],
     benefits: ["Vehicle Protection", "Time Saving", "Professional Results", "Eco-Conscious Service", "Convenience"],
     icon: "🚗",
-    image: "/images/carwash.jpg"
+    image: "/images/carwash.jpg",
+    website: "https://cabal-villa.vercel.app/carwash"
   },
   {
     id: "restaurant",
@@ -83,7 +87,8 @@ export const services = [
     features: ["Fresh Local Ingredients", "Signature Cocktails", "Diverse Menu", "Atmospheric Dining", "Professional Service", "Event Hosting"],
     benefits: ["Culinary Excellence", "Social Hub", "Professional Events", "Memorable Experiences", "Quality Beverages"],
     icon: "🍽️",
-    image: "/images/restaurant.jpg"
+    image: "/images/restaurant.jpg",
+    website: "https://cabal-villa.vercel.app/"
   },
   {
     id: "bricks",
@@ -93,7 +98,8 @@ export const services = [
     features: ["Quality Manufacturing", "Industry Standards", "Diverse Product Range", "Quality Control", "Reliable Delivery", "Competitive Pricing"],
     benefits: ["Structural Integrity", "Aesthetic Appeal", "Cost Effectiveness", "Reliable Supply", "Technical Support"],
     icon: "🧱",
-    image: "/images/bricks.jpg"
+    image: "/images/bricks.jpg",
+    website: "https://www.stmatechnicaldevelopment.co.za/"
   }
 ]
 
@@ -191,8 +197,10 @@ export const blogPosts = [
 export const navigationLinks = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
-  { name: "Services", href: "#services" },
-  { name: "Subsidiaries", href: "#subsidiaries" },
-  { name: "News", href: "#news" },
+  { name: "Services", href: "/services" },
+  { name: "Subsidiaries", href: "/subsidiaries" },
+  { name: "News", href: "/news" },
+  { name: "Gallery", href: "/gallery" },
+  { name: "Careers", href: "/careers" },
   { name: "Contact", href: "/contact" }
 ]

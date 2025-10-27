@@ -67,19 +67,28 @@ export function AnimatedBackground() {
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden">
+      {/* Dotted grid background */}
+      <div
+        className="absolute inset-0 opacity-50 dark:opacity-30"
+        style={{
+          backgroundImage: `radial-gradient(var(--dot-color) 1px, transparent 1px)`,
+          backgroundSize: "18px 18px",
+          backgroundPosition: "0 0",
+        }}
+      />
       {/* Geometric shapes */}
       <motion.div
-        className="absolute top-10 left-10 w-20 h-20 border border-red-500/20 rotate-45"
+        className="absolute top-10 left-10 w-20 h-20 border border-[#1f2244]/20 rotate-45"
         animate={{ rotate: [45, 405] }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
       />
       <motion.div
-        className="absolute top-1/4 right-20 w-16 h-16 bg-red-500/10 rounded-full"
+        className="absolute top-1/4 right-20 w-16 h-16 bg-[#3e3a70]/15 rounded-full"
         animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 4, repeat: Infinity }}
       />
       <motion.div
-        className="absolute bottom-20 left-1/4 w-12 h-12 border-2 border-red-400/30"
+        className="absolute bottom-20 left-1/4 w-12 h-12 border-2 border-[#8a8c91]/30"
         animate={{ rotate: [0, 360] }}
         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
       />
@@ -88,7 +97,7 @@ export function AnimatedBackground() {
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
-          className="absolute w-1 h-1 bg-red-500 rounded-full"
+          className="absolute w-1 h-1 bg-[#1f2244] rounded-full"
           style={{
             left: particle.x,
             top: particle.y,
@@ -127,7 +136,7 @@ export function AnimatedBackground() {
                 y1={particle.y}
                 x2={nextParticle.x}
                 y2={nextParticle.y}
-                stroke="rgb(239 68 68 / 0.2)"
+                stroke="rgba(31, 34, 68, 0.2)"
                 strokeWidth="1"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0, 0.3, 0] }}
@@ -139,8 +148,8 @@ export function AnimatedBackground() {
         })}
       </svg>
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-linear-to-br from-background/90 via-background/50 to-background/90" />
+      {/* Gradient overlay - reduced opacity so dots remain visible */}
+      <div className="absolute inset-0 bg-linear-to-br from-background/80 via-background/40 to-background/80" />
     </div>
   )
 }
