@@ -24,13 +24,20 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const getHeaderHeight = () => {
+    const el = document.getElementById("site-header")
+    return el ? el.getBoundingClientRect().height : 72 // fallback ~h-16
+  }
+
   const handleNavigation = (href: string) => {
     // If it's a hash link and we're on the home page, scroll to section
     if (href.startsWith('#') && pathname === '/') {
       const sectionId = href.replace("#", "")
       const element = document.getElementById(sectionId)
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" })
+        const offset = getHeaderHeight() + 8 // small gap
+        const y = element.getBoundingClientRect().top + window.scrollY - offset
+        window.scrollTo({ top: y, behavior: 'smooth' })
       }
       setIsMenuOpen(false)
     }
@@ -41,7 +48,9 @@ export function Header() {
     const sectionId = href.replace("#", "")
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      const offset = getHeaderHeight() + 8
+      const y = element.getBoundingClientRect().top + window.scrollY - offset
+      window.scrollTo({ top: y, behavior: 'smooth' })
     }
     setIsMenuOpen(false)
   }
@@ -50,6 +59,7 @@ export function Header() {
     <>
       {/* Main navigation */}
       <motion.header
+        id="site-header"
         className={`fixed top-0 left-0 right-0 z-50 w-full border-b transition-all duration-300 ${
           isScrolled
             ? "bg-white/95 dark:bg-background/90 backdrop-blur-md supports-backdrop-filter:bg-white/80 dark:supports-backdrop-filter:bg-background/70 shadow-lg"
@@ -59,7 +69,7 @@ export function Header() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-  <div className="container mx-auto px-4 h-16 md:h-20 lg:h-24 flex items-center justify-between">
+  <div className="container mx-auto px-4 h-16 md:h-20 lg:h-24 flex items-center justify-between pt-[env(safe-area-inset-top)]">
           {/* Logo */}
           <Link href="/" className="shrink-0">
             <div className="flex items-center space-x-2">
@@ -168,48 +178,69 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation: Side Drawer Overlay */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.div
-              className="md:hidden border-t bg-white/95 dark:bg-background/95 backdrop-blur"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="container mx-auto px-4 py-4 space-y-4">
-                {navigationLinks.map((link, index) => (
-                  link.href.startsWith('#') ? (
-                    <motion.button
-                      key={link.name}
-                      onClick={() => handleNavigation(link.href)}
-                      className="block w-full text-left text-sm font-medium hover:text-[#3e3a70] transition-colors py-2 cursor-pointer"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                    >
-                      {link.name}
-                    </motion.button>
-                  ) : (
-                    <Link key={link.name} href={link.href} onClick={() => setIsMenuOpen(false)}>
-                      <motion.div
-                        className="block w-full text-left text-sm font-medium hover:text-[#3e3a70] transition-colors py-2 cursor-pointer"
-                        initial={{ opacity: 0, x: -20 }}
+            <>
+              {/* Backdrop */}
+              <motion.div
+                className="fixed inset-0 z-40 md:hidden bg-black/50 backdrop-blur-sm"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                onClick={() => setIsMenuOpen(false)}
+                aria-hidden="true"
+              />
+              {/* Drawer */}
+              <motion.aside
+                className="fixed right-0 top-0 bottom-0 z-50 md:hidden w-[80vw] max-w-sm bg-white dark:bg-background border-l shadow-xl flex flex-col"
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ type: 'tween', duration: 0.25 }}
+                role="dialog"
+                aria-modal="true"
+                aria-label="Mobile Menu"
+              >
+                <div className="pt-[env(safe-area-inset-top)] px-4 py-3 border-b flex items-center justify-between">
+                  <span className="text-base font-semibold">Menu</span>
+                  <button
+                    aria-label="Close menu"
+                    className="p-2 rounded-md hover:bg-muted"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+                <nav className="flex-1 overflow-auto px-4 py-4 space-y-1">
+                  {navigationLinks.map((link, index) => (
+                    link.href.startsWith('#') ? (
+                      <motion.button
+                        key={link.name}
+                        onClick={() => handleNavigation(link.href)}
+                        className="block w-full text-left text-base font-medium rounded-md px-3 py-2 hover:bg-muted"
+                        initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: index * 0.1 }}
+                        transition={{ duration: 0.2, delay: index * 0.05 }}
                       >
                         {link.name}
-                      </motion.div>
-                    </Link>
-                  )
-                ))}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: navigationLinks.length * 0.1 }}
-                  className="pt-2"
-                >
+                      </motion.button>
+                    ) : (
+                      <Link key={link.name} href={link.href} onClick={() => setIsMenuOpen(false)}>
+                        <motion.div
+                          className="block w-full text-left text-base font-medium rounded-md px-3 py-2 hover:bg-muted"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.2, delay: index * 0.05 }}
+                        >
+                          {link.name}
+                        </motion.div>
+                      </Link>
+                    )
+                  ))}
+                </nav>
+                <div className="px-4 pb-[calc(env(safe-area-inset-bottom)+1rem)]">
                   <a
                     href={`tel:${companyInfo.phone}`}
                     onClick={() => setIsMenuOpen(false)}
@@ -218,9 +249,9 @@ export function Header() {
                     <Phone className="h-4 w-4" />
                     {companyInfo.phone}
                   </a>
-                </motion.div>
-              </div>
-            </motion.div>
+                </div>
+              </motion.aside>
+            </>
           )}
         </AnimatePresence>
       </motion.header>

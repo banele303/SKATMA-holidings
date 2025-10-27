@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { MessageCircle } from "lucide-react"
 
 export function WhatsAppFloat() {
   const phoneNumber = "27676254207" // Format: country code + number without +
@@ -14,21 +13,21 @@ export function WhatsAppFloat() {
 
   return (
     <motion.div
-      className="fixed z-50 right-3 bottom-[calc(env(safe-area-inset-bottom)+4rem)] sm:right-4 sm:bottom-[calc(env(safe-area-inset-bottom)+2.5rem)] md:right-6 md:bottom-[calc(env(safe-area-inset-bottom)+1.75rem)]"
+      className="fixed z-50 right-2 bottom-[calc(env(safe-area-inset-bottom)+1rem)] sm:right-4 sm:bottom-[calc(env(safe-area-inset-bottom)+1.5rem)] md:right-6 md:bottom-[calc(env(safe-area-inset-bottom)+1.75rem)]"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.3, delay: 1 }}
     >
       <motion.button
         onClick={handleClick}
-        className="group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-[#25D366] rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
+        className="group relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-[#25D366] rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Chat on WhatsApp"
       >
         {/* Pulsing ring animation */}
         <motion.div
-          className="absolute inset-0 rounded-full bg-[#25D366] opacity-75 hidden sm:block"
+          className="absolute inset-0 rounded-full bg-[#25D366] opacity-75 hidden md:block"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.75, 0, 0.75]
@@ -42,7 +41,7 @@ export function WhatsAppFloat() {
         
         {/* WhatsApp Icon */}
         <svg
-          className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white relative z-10"
+          className="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white relative z-10"
           fill="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +50,7 @@ export function WhatsAppFloat() {
         </svg>
 
         {/* Tooltip */}
-        <div className="absolute right-full mr-3 hidden sm:block px-3 py-2 bg-gray-900 text-white text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+        <div className="absolute right-full mr-3 hidden sm:block px-2.5 py-1.5 bg-gray-900 text-white text-xs sm:text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
           Chat with us on WhatsApp
           <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 bg-gray-900 rotate-45" />
         </div>
@@ -59,7 +58,7 @@ export function WhatsAppFloat() {
 
       {/* Notification badge (optional) */}
       <motion.div
-        className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-[#1f2244] rounded-full flex items-center justify-center text-white text-[0.65rem] sm:text-xs font-bold"
+        className="absolute -top-1 -right-1 hidden sm:flex w-5 h-5 bg-[#1f2244] rounded-full items-center justify-center text-white text-xs font-bold"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: 1.3 }}
