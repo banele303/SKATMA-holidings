@@ -179,14 +179,17 @@ export function Footer() {
             <p className="text-[#1f2244]/80 dark:text-gray-300 mb-4">
               Subscribe to our newsletter for the latest news and updates
             </p>
-            <div className="flex gap-2 max-w-md mx-auto">
+            <form className="flex flex-col sm:flex-row items-stretch gap-3 max-w-md mx-auto w-full" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
+                inputMode="email"
+                required
+                aria-label="Email address"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-2 rounded-md border border-[#d6d7dc] bg-background text-foreground focus:border-[#3e3a70] focus:ring-2 focus:ring-[#3e3a70]/30"
+                className="min-w-0 flex-1 px-4 py-2 rounded-md border border-[#d6d7dc] bg-background text-foreground focus:border-[#3e3a70] focus:ring-2 focus:ring-[#3e3a70]/30"
               />
-              <Button className="bg-[#1f2244] hover:bg-[#3e3a70] text-white">Subscribe</Button>
-            </div>
+              <Button type="submit" className="w-full sm:w-auto bg-[#1f2244] hover:bg-[#3e3a70] text-white whitespace-nowrap">Subscribe</Button>
+            </form>
           </div>
         </motion.div>
       </div>

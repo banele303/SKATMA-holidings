@@ -34,12 +34,12 @@ export function BrandsCarousel() {
     const canAutoplay = !isMobile && !prefersReduced
     if (canAutoplay) {
       controls.start({
-        x: [0, -100 * brands.length],
+        x: [0, -1600],
         transition: {
           x: {
             repeat: Infinity,
             repeatType: "loop",
-            duration: 25,
+            duration: 30,
             ease: "linear"
           }
         }
@@ -75,13 +75,13 @@ export function BrandsCarousel() {
         <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-linear-to-l from-background to-transparent z-10" />
 
         <motion.div
-          className={`flex gap-4 sm:gap-6 ${isMobile ? "overflow-x-auto scroll-px-4 px-4 -mx-4 snap-x snap-mandatory" : ""}`}
+          className={`flex gap-4 sm:gap-6 ${isMobile ? "flex-col w-full" : ""}`}
           animate={!isMobile && !prefersReduced ? controls : undefined}
-          style={{ width: "fit-content", willChange: "transform" }}
+          style={{ width: isMobile ? "100%" : "fit-content", willChange: "transform" }}
         >
           {(isMobile ? brands : duplicatedBrands).map((brand, index) => {
             const CardInner = (
-              <Card className="w-[300px] sm:w-[320px] md:w-[360px] h-[180px] sm:h-[200px] p-2 bg-background hover:shadow-xl transition-all cursor-pointer border-2 hover:border-[#3e3a70]/50">
+              <Card className={`${isMobile ? "w-full" : "w-[300px] sm:w-[320px] md:w-[360px]"} h-[180px] sm:h-[200px] p-2 bg-background hover:shadow-xl transition-all cursor-pointer border-2 hover:border-[#3e3a70]/50`}>
                 <div className="flex flex-row items-center text-left gap-3 sm:gap-4 h-full">
                   {/* Logo Image */}
                   <motion.div
@@ -123,7 +123,7 @@ export function BrandsCarousel() {
                 whileHover={!isMobile ? { scale: 1.05, y: -5 } : undefined}
                 whileTap={{ scale: 0.98, y: 1 }}
                 transition={{ duration: 0.25, delay: isMobile ? index * 0.05 : 0 }}
-                className={`${isMobile ? "shrink-0 snap-start" : ""}`}
+                className={`${isMobile ? "w-full" : ""}`}
               >
                 {CardInner}
               </motion.div>
@@ -137,7 +137,7 @@ export function BrandsCarousel() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visit ${brand.name} website`}
-                className={`block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3e3a70] ${isMobile ? "shrink-0 snap-start" : ""}`}
+                className={`block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3e3a70] ${isMobile ? "w-full" : ""}`}
               >
                 {content}
               </a>

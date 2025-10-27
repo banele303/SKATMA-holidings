@@ -177,10 +177,10 @@ export function Header() {
               />
               {/* Drawer */}
               <motion.aside
-                className="fixed right-0 top-0 bottom-0 z-50 md:hidden w-[80vw] max-w-sm bg-white dark:bg-background border-l shadow-xl flex flex-col"
-                initial={{ x: "100%" }}
-                animate={{ x: 0 }}
-                exit={{ x: "100%" }}
+                className="fixed right-0 top-0 bottom-0 z-60 md:hidden w-[82vw] max-w-sm bg-white dark:bg-background border-l shadow-xl flex flex-col"
+                initial={{ y: "-4%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "-4%", opacity: 0 }}
                 transition={{ type: 'tween', duration: 0.25 }}
                 role="dialog"
                 aria-modal="true"
@@ -197,14 +197,15 @@ export function Header() {
                   </button>
                 </div>
                 <nav className="flex-1 overflow-auto px-4 py-4 space-y-1">
+                  <div className="text-xs uppercase tracking-wide text-muted-foreground px-3 pb-2">Navigation</div>
                   {navigationLinks.map((link, index) => (
                     link.href.startsWith('#') ? (
                       <motion.button
                         key={link.name}
                         onClick={() => handleNavigation(link.href)}
-                        className="block w-full text-left text-base font-medium rounded-md px-3 py-2 hover:bg-muted"
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        className="block w-full text-left text-base font-medium rounded-md px-3 py-2 hover:bg-muted text-[#1f2244] dark:text-gray-100"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.2, delay: index * 0.05 }}
                       >
                         {link.name}
@@ -212,9 +213,9 @@ export function Header() {
                     ) : (
                       <Link key={link.name} href={link.href} onClick={() => setIsMenuOpen(false)}>
                         <motion.div
-                          className="block w-full text-left text-base font-medium rounded-md px-3 py-2 hover:bg-muted"
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
+                          className="block w-full text-left text-base font-medium rounded-md px-3 py-2 hover:bg-muted text-[#1f2244] dark:text-gray-100"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.2, delay: index * 0.05 }}
                         >
                           {link.name}
@@ -227,7 +228,7 @@ export function Header() {
                   <a
                     href={`tel:${companyInfo.phone}`}
                     onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full rounded-lg border border-[#1f2244]/40 bg-white text-[#1f2244] font-semibold py-3 shadow-sm hover:shadow transition-all"
+                    className="flex items-center justify-center gap-2 w-full rounded-lg border border-[#1f2244]/40 bg-white text-[#1f2244] dark:bg-[#1f2244] dark:text-white font-semibold py-3 shadow-sm hover:shadow transition-all"
                   >
                     <Phone className="h-4 w-4" />
                     {companyInfo.phone}
