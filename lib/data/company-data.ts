@@ -29,7 +29,7 @@ export const subsidiaries = [
   },
   {
     id: 2,
-    name: "MSTA Holdings",
+    name: "STMA Brickyard",
     description: "We specialize in producing and supplying durable, high-quality bricks for all types of construction.",
     details: "MSTA Holdings is a leading manufacturer and supplier of premium construction materials, specializing in high-grade bricks and building supplies. Our state-of-the-art production facilities ensure consistent quality and durability, meeting the demanding requirements of residential, commercial, and industrial construction projects. We are committed to sustainable manufacturing practices while maintaining competitive pricing.",
     services: ["Brick Manufacturing", "Construction Materials", "Quality Assurance", "Logistics & Delivery"],
@@ -47,7 +47,7 @@ export const subsidiaries = [
   },
   {
     id: 4,
-    name: "Agri-nema",
+    name: "Agri Nema Farm",
     description: "The farming engine with expertise in crop and animal farming.",
     details: "Agri-nema serves as our agricultural powerhouse, implementing cutting-edge farming techniques and sustainable practices. Our operations span both crop cultivation and livestock management, ensuring food security and supporting local communities. We utilize modern agricultural technology, precision farming methods, and sustainable resource management to maximize productivity while preserving environmental integrity.",
     services: ["Crop Production", "Livestock Management", "Sustainable Agriculture", "Food Security"],

@@ -30,19 +30,14 @@ export function Header() {
         window.scrollTo({ top: y, behavior: 'smooth' })
       }
       setIsMenuOpen(false)
+      return
     }
-    // Otherwise, let the Link component handle it
-  }
-
-  const scrollToSection = (href: string) => {
-    const sectionId = href.replace("#", "")
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const offset = getHeaderHeight() + 8
-      const y = element.getBoundingClientRect().top + window.scrollY - offset
-      window.scrollTo({ top: y, behavior: 'smooth' })
-    }
+    // For non-hash links (or hash links on other pages), navigate normally but close menu first
     setIsMenuOpen(false)
+    // If we're already on the target path, trigger scroll after closing
+    if (pathname === href) {
+      return
+    }
   }
 
   return (
@@ -200,6 +195,31 @@ export function Header() {
                   <div className="text-xs uppercase tracking-wide text-muted-foreground px-3 pb-2">Navigation</div>
                   {navigationLinks.map((link, index) => (
                     link.href.startsWith('#') ? (
+                      <motion.div
+                        key={link.name}
+                        className="block"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.2, delay: index * 0.05 }}
+                      >
+                        {link.href.startsWith('#') ? (
+                          <button
+                            onClick={() => handleNavigation(link.href)}
+                            className="w-full text-left text-base font-medium rounded-md px-3 py-2 hover:bg-muted text-[#1f2244] dark:text-gray-100"
+                          >
+                            {link.name}
+                          </button>
+                        ) : (
+                          <Link
+                            href={link.href}
+                            className="block w-full text-left text-base font-medium rounded-md px-3 py-2 hover:bg-muted text-[#1f2244] dark:text-gray-100"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {link.name}
+                          </Link>
+                        )}
+                      </motion.div>
+                    ) : (
                       <motion.button
                         key={link.name}
                         onClick={() => handleNavigation(link.href)}
@@ -210,17 +230,6 @@ export function Header() {
                       >
                         {link.name}
                       </motion.button>
-                    ) : (
-                      <Link key={link.name} href={link.href} onClick={() => setIsMenuOpen(false)}>
-                        <motion.div
-                          className="block w-full text-left text-base font-medium rounded-md px-3 py-2 hover:bg-muted text-[#1f2244] dark:text-gray-100"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.2, delay: index * 0.05 }}
-                        >
-                          {link.name}
-                        </motion.div>
-                      </Link>
                     )
                   ))}
                 </nav>
